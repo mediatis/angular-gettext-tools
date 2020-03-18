@@ -10,19 +10,25 @@ describe('Extracting custom filters', function () {
             'test/fixtures/filter-custom.html'
         ];
         var catalog = testExtract(files, {
-            attribute: 'trans'
+            filterName: 'trans'
         });
 
-        assert.equal(catalog.items.length, 2);
+        assert.equal(catalog.items.length, 3);
+
         assert.equal(catalog.items[0].msgid, 'Hello');
         assert.equal(catalog.items[0].msgstr, '');
         assert.equal(catalog.items[0].references.length, 1);
-        assert.deepEqual(catalog.items[0].references, ['test/fixtures/filter-custom.html:3']);
+        assert.deepEqual(catalog.items[0].references, ['test/fixtures/filter-custom.html:4']);
 
-        assert.equal(catalog.items[1].msgid, 'Second');
+        assert.equal(catalog.items[1].msgid, 'Label');
         assert.equal(catalog.items[1].msgstr, '');
         assert.equal(catalog.items[1].references.length, 1);
-        assert.deepEqual(catalog.items[1].references, ['test/fixtures/filter-custom.html:4']);
+        assert.deepEqual(catalog.items[1].references, ['test/fixtures/filter-custom.html:3']);
+
+        assert.equal(catalog.items[2].msgid, 'Second');
+        assert.equal(catalog.items[2].msgstr, '');
+        assert.equal(catalog.items[2].references.length, 1);
+        assert.deepEqual(catalog.items[2].references, ['test/fixtures/filter-custom.html:5']);
     });
 
     it('works for concatenated filter strings', function () {
@@ -30,7 +36,7 @@ describe('Extracting custom filters', function () {
             'test/fixtures/multifilter-custom.html'
         ];
         var catalog = testExtract(files, {
-            attribute: 'trans'
+            filterName: 'trans'
         });
 
         assert.equal(catalog.items.length, 2);
@@ -50,7 +56,7 @@ describe('Extracting custom filters', function () {
             'test/fixtures/escaped_quotes-custom.html'
         ];
         var catalog = testExtract(files, {
-            attribute: 'trans'
+            filterName: 'trans'
         });
 
         assert.equal(catalog.items.length, 2);
@@ -70,7 +76,7 @@ describe('Extracting custom filters', function () {
             'test/fixtures/filter-in-multiple-expression-attributes-custom.html'
         ];
         var catalog = testExtract(files, {
-            attribute: 'trans'
+            filterName: 'trans'
         });
 
         assert.equal(catalog.items.length, 4);
